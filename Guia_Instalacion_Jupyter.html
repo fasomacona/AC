@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Paso a Paso: Instalar Jupyter Notebook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        .step {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 6px solid #3498db;
+        }
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-right: 15px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding: 15px;
+        }
+        .btn {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 10px 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-laptop-code"></i> Guía de Instalación</h1>
+            <p><strong>Jupyter Notebook / Jupyter Lab</strong></p>
+            <p>Para el curso de Data Analytics con Pronósticos en Python</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="step">
+            <h2><span class="step-number">1</span> Opción Recomendada: Usar Anaconda (Más Fácil)</h2>
+            <p><strong>Recomendado para principiantes.</strong></p>
+            <ol>
+                <li>Descarga Anaconda desde: <a href="https://www.anaconda.com/download" target="_blank">https://www.anaconda.com/download</a></li>
+                <li>Instala según tu sistema operativo (Windows / macOS / Linux).</li>
+                <li>Abre el **Anaconda Prompt** (en Windows) o Terminal.</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h2><span class="step-number">2</span> Crear Entorno Virtual</h2>
+            <pre><code>conda create -n pronosticos python=3.11 -y</code></pre>
+            <p>Activar el entorno:</p>
+            <pre><code>conda activate pronosticos</code></pre>
+        </div>
+
+        <div class="step">
+            <h2><span class="step-number">3</span> Instalar Jupyter Notebook / Lab</h2>
+            <pre><code>conda install jupyterlab -y</code></pre>
+            <p>O con pip:</p>
+            <pre><code>pip install jupyterlab notebook</code></pre>
+        </div>
+
+        <div class="step">
+            <h2><span class="step-number">4</span> Instalar Bibliotecas del Curso</h2>
+            <pre><code>pip install pandas numpy matplotlib seaborn statsmodels prophet scikit-learn plotly pmdarima</code></pre>
+        </div>
+
+        <div class="step">
+            <h2><span class="step-number">5</span> Ejecutar Jupyter</h2>
+            <pre><code>jupyter lab</code></pre>
+            <p>O para la versión clásica:</p>
+            <pre><code>jupyter notebook</code></pre>
+        </div>
+
+        <div class="step warning">
+            <h2><i class="fas fa-exclamation-triangle"></i> Problemas Comunes y Soluciones</h2>
+            <ul>
+                <li><strong>Comando no encontrado:</strong> Asegúrate de tener activado el entorno (<code>conda activate pronosticos</code>).</li>
+                <li><strong>Permisos en Windows:</strong> Ejecuta Anaconda Prompt como Administrador.</li>
+                <li><strong>Instalación lenta:</strong> Usa <code>-y</code> para aceptar automáticamente.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+               <a href="Modulo1_Introduccion.html" class="btn" style="background:#2980b9;"><i class="fas fa-arrow-left"></i> Volver al Módulo 1</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Guía Oficial del Curso • Data Analytics con Pronósticos en Python</p>
+    </footer>
+</body>
+</html>
