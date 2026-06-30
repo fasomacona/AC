@@ -129,6 +129,30 @@ plt.show()</code></pre>
        download="Modulo2_Analitica_Descriptiva_Visualizacion.ipynb">
         <i class="fas fa-download"></i> Descargar Notebook (.ipynb)
     </a>
+            <a href="#" 
+   onclick="descargarArchivo('https://raw.githubusercontent.com/fasomacona/AC/refs/heads/main/Modulo2_Analitica_Descriptiva_Visualizacion.ipynb', 'Modulo2_Analitica_Descriptiva_Visualizacion.ipynb')"
+   class="btn">
+    <i class="fas fa-download"></i> Descargar Notebook2 (.ipynb)
+</a>
+
+<script>
+function descargarArchivo(url, nombre) {
+    fetch(url)
+        .then(resp => resp.blob())
+        .then(blob => {
+            const urlBlob = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = urlBlob;
+            a.download = nombre;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(urlBlob);
+            document.body.removeChild(a);
+        })
+        .catch(() => alert('Error al descargar. Intenta de nuevo.'));
+}
+</script>
         </div>
 
     </div>
