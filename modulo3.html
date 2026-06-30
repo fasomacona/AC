@@ -136,7 +136,30 @@ plt.title('Pronóstico de Ventas')
 plt.show()</code></pre>
             </div>
         </div>
+ <a href="#" 
+   onclick="descargarArchivo(https://github.com/fasomacona/AC/blob/main/Modulo3_Analisis_Series_Temporales.pdf', 'Modulo3_Analisis_Series_Temporales.pdf')"
+   class="btn">
+    <i class="fas fa-download"></i> Descargar Notebook3 (.pdf)
+</a>
 
+<script>
+function descargarArchivo(url, nombre) {
+    fetch(url)
+        .then(resp => resp.blob())
+        .then(blob => {
+            const urlBlob = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = urlBlob;
+            a.download = nombre;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(urlBlob);
+            document.body.removeChild(a);
+        })
+        .catch(() => alert('Error al descargar. Intenta de nuevo.'));
+}
+</script>
         <div class="card" style="text-align: center;">
             <h2>📤 Entrega del Módulo 3</h2>
             
