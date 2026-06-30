@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Análisis de Series Temporales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; background: #f8f9fa; color: #333; }
+        header { 
+            background: linear-gradient(135deg, #2c3e50, #8e44ad); 
+            color: white; 
+            padding: 3rem 0; 
+            text-align: center; 
+        }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 20px; }
+        .card { 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+            padding: 30px; 
+            margin-bottom: 30px; 
+        }
+        .step { 
+            border-left: 6px solid #8e44ad; 
+            padding-left: 25px; 
+            margin: 25px 0; 
+        }
+        pre { 
+            background: #2c3e50; 
+            color: #ecf0f1; 
+            padding: 18px; 
+            border-radius: 10px; 
+            overflow-x: auto; 
+            font-size: 0.95rem; 
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #27ae60;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-clock"></i> Módulo 3</h1>
+            <p><strong>Análisis de Series Temporales</strong></p>
+            <p>Duración: 4 horas (2 sesiones)</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Objetivos del Módulo</h2>
+            <ul>
+                <li>Comprender los componentes de una serie temporal.</li>
+                <li>Realizar descomposición y prueba de estacionariedad.</li>
+                <li>Aplicar modelos clásicos de pronóstico (Suavizado y ARIMA).</li>
+                <li>Generar pronósticos con Python.</li>
+            </ul>
+        </div>
+
+        <!-- Sesión 5 -->
+        <div class="card">
+            <h2>🕒 Sesión 5: Conceptos Fundamentales de Series Temporales</h2>
+            
+            <div class="step">
+                <h3>Componentes de una Serie Temporal</h3>
+                <ul>
+                    <li><strong>Tendencia (Trend)</strong>: Movimiento a largo plazo</li>
+                    <li><strong>Estacionalidad (Seasonality)</strong>: Patrones que se repiten</li>
+                    <li><strong>Ciclicidad</strong>: Fluctuaciones a mayor escala</li>
+                    <li><strong>Ruido (Residual)</strong>: Variación aleatoria</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Código: Descomposición de Serie Temporal</h3>
+                <pre><code>from statsmodels.tsa.seasonal import seasonal_decompose
+import matplotlib.pyplot as plt
+
+decomposition = seasonal_decompose(df['ventas'], model='additive', period=30)
+decomposition.plot()
+plt.show()</code></pre>
+            </div>
+
+            <div class="step">
+                <h3>Prueba de Estacionariedad (ADF Test)</h3>
+                <pre><code>from statsmodels.tsa.stattools import adfuller
+
+result = adfuller(df['ventas'])
+print('ADF Statistic:', result[0])
+print('p-value:', result[1])</code></pre>
+            </div>
+        </div>
+
+        <!-- Sesión 6 -->
+        <div class="card">
+            <h2>📈 Sesión 6: Modelos de Pronóstico</h2>
+            
+            <div class="step">
+                <h3>1. Suavizado Exponencial</h3>
+                <pre><code>from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+model = ExponentialSmoothing(df['ventas'], trend='add', seasonal='add', seasonal_periods=12)
+fit = model.fit()
+pronostico = fit.forecast(30)</code></pre>
+            </div>
+
+            <div class="step">
+                <h3>2. Modelo ARIMA / SARIMA</h3>
+                <pre><code>from statsmodels.tsa.arima.model import ARIMA
+
+model = ARIMA(df['ventas'], order=(1,1,1))
+model_fit = model.fit()
+pronostico = model_fit.forecast(steps=30)</code></pre>
+            </div>
+
+            <div class="step">
+                <h3>3. Visualización del Pronóstico</h3>
+                <pre><code>plt.figure(figsize=(12,6))
+plt.plot(df.index, df['ventas'], label='Datos Reales')
+plt.plot(future_dates, pronostico, label='Pronóstico', color='red')
+plt.legend()
+plt.title('Pronóstico de Ventas')
+plt.show()</code></pre>
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2>📤 Entrega del Módulo 3</h2>
+            
+            <a href="https://classroom.google.com/" target="_blank" class="btn" style="background:#4285f4;">
+                <i class="fas fa-door-open"></i> Unirme a la Clase
+            </a>
+            
+            <a href="#" class="btn">
+                <i class="fas fa-upload"></i> Subir Evidencias al Classroom
+            </a>
+        </div>
+
+    </div>
+
+    <footer style="text-align:center; padding:2.5rem; background:#2c3e50; color:white;">
+        <p>Módulo 3 • Data Analytics con Pronósticos en Python</p>
+    </footer>
+</body>
+</html>
