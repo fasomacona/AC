@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Modelos Avanzados de Pronóstico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.85; margin: 0; background: #f8f9fa; color: #333; }
+        header { background: linear-gradient(135deg, #2c3e50, #f39c12); color: white; padding: 5rem 0; text-align: center; }
+        .container { max-width: 1400px; margin: 2.5rem auto; padding: 0 30px; }
+        .card { background: white; border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); padding: 45px; margin-bottom: 50px; }
+        .tool-box { background: #f8f9fa; padding: 30px; border-radius: 12px; margin: 25px 0; border-left: 8px solid #f39c12; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+        th, td { padding: 16px; border: 1px solid #ddd; text-align: left; }
+        th { background: #f39c12; color: white; }
+        .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-rocket"></i> Módulo 4: Modelos Avanzados de Pronóstico</h1>
+        <p>Las herramientas más potentes usadas por empresas líderes a nivel mundial</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Introducción al Módulo</h2>
+            <p>En este módulo avanzaremos desde los modelos clásicos (ARIMA, Suavizado) hacia las técnicas modernas que están revolucionando la analítica predictiva en las empresas. Aprenderás a elegir el modelo correcto según el tipo de negocio, volumen de datos y precisión requerida.</p>
+        </div>
+
+        <!-- Prophet -->
+        <div class="card">
+            <h2>1. Prophet - Librería de Meta (Facebook)</h2>
+            <div class="tool-box">
+                <h3>¿Qué es Prophet?</h3>
+                <p>Es una librería de pronóstico automático diseñada para ser fácil de usar por analistas y científicos de datos. Puede manejar tendencias no lineales, estacionalidad múltiple, efectos de holidays y valores faltantes.</p>
+                
+                <h4>Código Completo</h4>
+                <pre><code>from prophet import Prophet
+from prophet.plot import plot_plotly
+
+model = Prophet(
+    changepoint_prior_scale=0.05,
+    yearly_seasonality=True,
+    weekly_seasonality=True,
+    daily_seasonality=False,
+    seasonality_mode='multiplicative'
+)
+model.fit(df_prophet)
+future = model.make_future_dataframe(periods=90, freq='D')
+forecast = model.predict(future)</code></pre>
+            </div>
+
+            <div class="pros-cons">
+                <div>
+                    <strong>Ventajas</strong>
+                    <ul>
+                        <li>Configuración muy sencilla</li>
+                        <li>Excelente manejo de estacionalidad</li>
+                        <li>Incluye intervalos de confianza</li>
+                        <li>Visualizaciones integradas</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>Desventajas</strong>
+                    <ul>
+                        <li>Menor flexibilidad con variables externas</li>
+                        <li>Puede sobreajustarse en series muy ruidosas</li>
+                    </ul>
+                </div>
+            </div>
+            <p><strong>Casos de uso reales:</strong> Walmart (pronóstico de ventas), Uber (demanda de viajes), Airbnb (ocupación), y gobiernos para pronóstico epidemiológico.</p>
+        </div>
+
+        <!-- Machine Learning -->
+        <div class="card">
+            <h2>2. Machine Learning: XGBoost y Random Forest</h2>
+            <p>Estos modelos convierten el problema de pronóstico en un problema de regresión supervisada mediante técnicas de feature engineering (lags, medias móviles, variables calendáricas, etc.).</p>
+            
+            <h3>Casos Reales</h3>
+            <p>Amazon usa modelos similares para pronosticar demanda de millones de productos. Bancos los usan para predecir transacciones y fraude.</p>
+        </div>
+
+        <!-- LSTM -->
+        <div class="card">
+            <h2>3. LSTM - Deep Learning para Series Temporales</h2>
+            <p>Las redes LSTM son capaces de aprender dependencias a largo plazo, lo que las hace ideales para patrones complejos que otros modelos no capturan.</p>
+            <p><strong>Caso real:</strong> Empresas de energía usan LSTM para pronosticar consumo eléctrico hora a hora.</p>
+        </div>
+
+        <!-- Tabla Comparativa -->
+        <div class="card">
+            <h2>Comparativa Detallada de Todos los Modelos</h2>
+            <table>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Dificultad</th>
+                    <th>Precisión</th>
+                    <th>Velocidad</th>
+                    <th>Interpretabilidad</th>
+                    <th>Datos Requeridos</th>
+                    <th>Recomendado Para</th>
+                </tr>
+                <tr>
+                    <td>Prophet</td>
+                    <td>Baja</td>
+                    <td>Alta</td>
+                    <td>Rápida</td>
+                    <td>Alta</td>
+                    <td>Medio</td>
+                    <td>Negocios con estacionalidad clara</td>
+                </tr>
+                <tr>
+                    <td>XGBoost</td>
+                    <td>Media</td>
+                    <td>Muy Alta</td>
+                    <td>Media</td>
+                    <td>Media</td>
+                    <td>Alto</td>
+                    <td>Cuando hay muchas variables externas</td>
+                </tr>
+                <tr>
+                    <td>LSTM</td>
+                    <td>Alta</td>
+                    <td>Alta (con datos)</td>
+                    <td>Lenta</td>
+                    <td>Baja</td>
+                    <td>Muy Alto</td>
+                    <td>Series temporales complejas</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2>Proyecto Final del Módulo</h2>
+            <p>Desarrollar un dashboard comparativo completo entre Prophet, XGBoost y LSTM, incluyendo métricas y recomendación final para la empresa.</p>
+        </div>
+
+    </div>
+</body>
+</html>
